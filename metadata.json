@@ -1,0 +1,5 @@
+{
+  "name": "AI Resume Analyzer",
+  "description": "Upload your resume to get an instant analysis of your skills, a job-fit score, suggested improvements, and recommended job roles tailored to your profile.",
+  "requestFramePermissions": []
+}
