@@ -1,7 +1,6 @@
+
 import { GoogleGenAI, Type } from '@google/genai';
 import { AnalysisResult } from '../types';
-
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const analysisSchema = {
   type: Type.OBJECT,
@@ -110,7 +109,13 @@ const analysisSchema = {
   },
 };
 
-export const analyzeResume = async (resumeText: string): Promise<AnalysisResult> => {
+export const analyzeResume = async (resumeText: string, apiKey: string): Promise<AnalysisResult> => {
+  if (!apiKey) {
+    throw new Error("API key is missing. Please provide a valid Gemini API key.");
+  }
+  
+  const ai = new GoogleGenAI({ apiKey });
+
   const prompt = `
     System: You are an expert career coach and resume analysis AI system. Your primary task is to first determine the most likely job role for the candidate based on their resume, and then provide a comprehensive analysis based on that predicted role. Your output MUST be a single, valid JSON object that adheres to the provided schema and nothing else. Do not include markdown formatting like \`\`\`json ... \`\`\`.
 
@@ -149,8 +154,11 @@ export const analyzeResume = async (resumeText: string): Promise<AnalysisResult>
     const jsonText = response.text.trim();
     return JSON.parse(jsonText) as AnalysisResult;
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error calling Gemini API:", error);
-    throw new Error("Failed to get a valid response from the AI model.");
+    if (error.message && error.message.includes('API key not valid')) {
+        throw new Error("Your API key is not valid. Please check your key and try again.");
+    }
+    throw new Error("Failed to get a valid response from the AI model. The key may be invalid or the service may be busy.");
   }
 };
