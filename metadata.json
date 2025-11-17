@@ -1,5 +1,5 @@
 {
-  "name": "Copy of AI Resume Analyzer",
-  "description": "Upload your resume to get an instant analysis of your skills, a job-fit score, suggested improvements, and recommended job roles tailored to your profile.",
+  "name": "cvaro",
+  "description": "cvaro — Upload your resume to get instant AI-driven resume insights, a job-fit score, suggested improvements, and recommended roles.",
   "requestFramePermissions": []
 }

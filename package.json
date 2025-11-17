@@ -1,5 +1,6 @@
 {
-  "name": "copy-of-ai-resume-analyzer",
+  "name": "cvaro",
+  "description": "cvaro — AI-powered resume insights and job-fit predictions",
   "private": true,
   "version": "0.0.0",
   "type": "module",
