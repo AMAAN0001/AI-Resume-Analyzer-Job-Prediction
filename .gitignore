@@ -3,6 +3,11 @@
 .env.local
 .env.*.local
 
+# Documentation with secrets
+GOOGLE_OAUTH_SETUP.md
+GOOGLE_OAUTH_SUMMARY.md
+SETUP.md
+
 # Logs
 logs
 *.log
